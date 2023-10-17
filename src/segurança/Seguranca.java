@@ -1,6 +1,5 @@
 package segurança;
 
 public class Seguranca {
-
-    hfgnjnjnjk
+    public String Seguranca;
 }
