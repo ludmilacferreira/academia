@@ -5,7 +5,7 @@ public static void main(String[] args){
 System.out.println("Menu de pagamento");
 System.out.println("1. Dinheiro");
 System.out.println("2. Cartão de Crédito");
-System.out.println("Cartão de Débito");
+System.out.println("3. Cartão de Débito");
 System.out.println("4. PIX");
 System.out.println("Escolha uma dessas opções:");
 
@@ -16,7 +16,7 @@ switch (opcao) {
         System.out.println("Você escolheu pagar com Dinheiro.");
         break;
     case 2:
-        System.out.println("Voc~e escolheu pagar com Cartão de Crédito");
+        System.out.println("Você escolheu pagar com Cartão de Crédito");
         break;
     case 3:
         System.out.println("Você escolheu pagar com Cartão de Débito");
