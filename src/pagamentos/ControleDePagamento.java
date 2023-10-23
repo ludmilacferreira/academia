@@ -85,7 +85,13 @@ class ControlePagamentosAcademia {
         academia.adicionarControleDePagamento(c3);
 
         c1.pagar();
+        c2.pagar();
+        c3.pagar();
 
         academia.emitirFatura();
         academia.emitirRecibo(c1);
+        academia.emitirRecibo(c2);
+        academia.emitirRecibo(c3);
         academia.acompanharPagamentosAtrasados();
+    }
+}
