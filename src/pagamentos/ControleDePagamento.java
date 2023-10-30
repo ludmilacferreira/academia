@@ -3,7 +3,7 @@ package pagamentos;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControleDePagamentos {
+public class ControleDePagamento {
     private String nome;
     private double valor;
     private boolean pago;
