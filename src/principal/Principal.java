@@ -1,7 +1,7 @@
 package principal;
 
 import controler.Controler;
-import view.Menu;
+import view.MenuPrincipal;
 
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ public class Principal {
         String resposta;
         int op;
         do {
-            Menu.mostrarMenu();
+            Menu.mostrarMenuPrincipal();
             op = scanner.nextInt();
             switch (op) {
                 case 1:
@@ -38,24 +38,15 @@ public class Principal {
                     controler.mostrarGerenciamentoDeInstrutores();
                     break;
                 case 8:
-                    controler.mostrarIntegracoesSistemaDePagamento();
-                    break;
-                case 9:
                     controler.mostrarControleDePagamento();
                     break;
-                case 10:
+                case 9:
                     controler.mostrarRelatoriosEstatisticas();
                     break;
-                case 11:
+                case 10:
                     controler.mostrarSeguranca();
                     break;
-                case 12:
-                    controler.mostrarUI();
-                    break;
-                case 13:
-                    controler.mostrarUX();
-                    break;
-                case 14:
+                case 11:
                     System.exit(0);
                 default:
                     System.out.println("Opção inválida!");
