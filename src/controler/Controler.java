@@ -45,6 +45,7 @@ public class Controler {
         System.out.println("1. Cadastro de Equipamentos");
         System.out.println("2. Cadastro de Funcionários");
         System.out.println("3. Cadastro de Membros");
+        System.out.println("4. Cadastro de Produtos");
         System.out.print("Digite o número da opção desejada: ");
         int opcao = scanner.nextInt();
 
@@ -57,6 +58,9 @@ public class Controler {
                 break;
             case 3:
                realizarCadastroDeMembros();
+                break;
+            case 4:
+                realizarCadastroDeProdutos();
                 break;
             default:
                 System.out.println("Opção inválida. Por favor, tente novamente.");
@@ -111,10 +115,21 @@ public class Controler {
     }
 
     private void realizarCadastroDeProdutos() {
-        System.out.println("Implemente a funcionalidade de Cadastro de Produtos aqui.");
-    }
+   
+    CadastroDeProdutos cadastroDeProdutos = new CadastroDeProdutos();
+    
+    Produto produto1 = new Produto("Whey Protein", 49.99);
+    Produto produto2 = new Produto("Barra de Proteína", 2.99);
+    Produto produto3 = new Produto("Shaker", 9.99);
 
-    public void mostrarComunicacaoComMembros() {
+    cadastroDeProdutos.adicionarProduto(produto1);
+    cadastroDeProdutos.adicionarProduto(produto2);
+    cadastroDeProdutos.adicionarProduto(produto3);
+
+    cadastroDeProdutos.mostrarProdutos();
+ }
+
+        public void mostrarComunicacaoComMembros() {
         ComunicacaoComMembros.ComunicacaoMembros comunicacaoMembros = new ComunicacaoComMembros.ComunicacaoMembros();
         ComunicacaoComMembros.ComunicacaoEmail comunicacaoPorEmail = new ComunicacaoComMembros.ComunicacaoEmail("exemplo@email.com");
         comunicacaoMembros.setMetodoComunicacao(comunicacaoPorEmail);
@@ -135,10 +150,6 @@ public class Controler {
         System.out.println("Implemente a funcionalidade de Gerenciamento de Instrutores aqui.");
     }
 
-    public void mostrarIntegracoesSistemaDePagamento() {
-        System.out.println("Implemente a funcionalidade de Integrações com Sistema de Pagamento aqui.");
-    }
-
     public void mostrarControleDePagamento() {
         System.out.println("Implemente a funcionalidade de Controle de Pagamento aqui.");
     }
@@ -151,11 +162,4 @@ public class Controler {
         System.out.println("Implemente a funcionalidade de Segurança aqui.");
     }
 
-    public void mostrarUI() {
-        System.out.println("Implemente a funcionalidade de UI aqui.");
-    }
-
-    public void mostrarUX() {
-        System.out.println("Implemente a funcionalidade de UX aqui.");
-    }
 }
