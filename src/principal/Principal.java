@@ -23,7 +23,7 @@ public class Principal {
                     controler.mostrarReservaAgendamentoOnline();
                     break;
                 case 3:
-                    controler.mostrarGerenciamentoDeAulas();
+                    controler.mostrarGerenciamentoDeTreinos();
                     break;
                 case 4:
                     controler.mostrarTelaDeCadastro();
