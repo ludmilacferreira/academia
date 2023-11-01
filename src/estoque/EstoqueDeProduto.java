@@ -2,6 +2,7 @@ package estoque;
 
 import java.util.HashMap;
 import java.util.Map;
+
 public class EstoqueDeProduto {
     private String nome;
     private double preco;
@@ -73,4 +74,3 @@ public class SistemaAcademia {
         sistema.mostrarEstoque();
     }
 }
-
