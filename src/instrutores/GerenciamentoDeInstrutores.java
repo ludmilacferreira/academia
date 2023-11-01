@@ -2,36 +2,16 @@ package instrutores;
 
 import java.util.ArrayList;
 import java.util.List;
-
-class Instrutor {
-    private int id;
-    private String nome;
-    private String especialidade;
-
-    public Instrutor(int id, String nome, String especialidade) {
-        this.id = id;
-        this.nome = nome;
-        this.especialidade = especialidade;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getEspecialidade() {
-        return especialidade;
-    }
-}
+import java.util.Random;
 
 public class GerenciamentoDeInstrutores {
+
     private List<Instrutor> instrutores;
+    private Random random;
 
     public GerenciamentoDeInstrutores() {
-        instrutores = new ArrayList<>();
+        this.instrutores = new ArrayList<>();
+        this.random = new Random();
     }
 
     public void adicionarInstrutor(Instrutor instrutor) {
@@ -44,7 +24,7 @@ public class GerenciamentoDeInstrutores {
                 return instrutor;
             }
         }
-        return null; // Instrutor não encontrado
+        return null;
     }
 
     public void listarInstrutores() {
@@ -64,5 +44,43 @@ public class GerenciamentoDeInstrutores {
         } else {
             System.out.println("Instrutor não encontrado.");
         }
+    }
+
+    public class Instrutor {
+        private int id;
+        private String nome;
+        private String especialidade;
+
+        public Instrutor(String nome, String especialidade) {
+            this.id = random.nextInt(1000);
+            this.nome = nome;
+            this.especialidade = especialidade;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getNome() {
+            return nome;
+        }
+
+        public String getEspecialidade() {
+            return especialidade;
+        }
+    }
+
+    public static void main(String[] args) {
+        GerenciamentoDeInstrutores gerenciamento = new GerenciamentoDeInstrutores();
+
+        Instrutor instrutor1 = gerenciamento.new Instrutor("André", "Musculação (estagiário)");
+        Instrutor instrutor2 = gerenciamento.new Instrutor("Carlos", "Musculação (professor)");
+        Instrutor instrutor3 = gerenciamento.new Instrutor("Mariana", "Pilates (professora)");
+
+        gerenciamento.adicionarInstrutor(instrutor1);
+        gerenciamento.adicionarInstrutor(instrutor2);
+        gerenciamento.adicionarInstrutor(instrutor3);
+
+        gerenciamento.listarInstrutores();
     }
 }
