@@ -27,14 +27,11 @@ public class ReservasAgendamentosOnline {
     public static void main(String[] args) {
         ReservasAgendamentosOnline agendamentos = new ReservasAgendamentosOnline();
 
-        // Fazendo reservas
         agendamentos.fazerReserva("14:00");
         agendamentos.fazerReserva("15:00");
 
-        // Tentando cancelar uma reserva
         agendamentos.cancelarReserva("14:00");
 
-        // Tentando cancelar uma reserva inexistente
         agendamentos.cancelarReserva("16:00");
     }
 }
