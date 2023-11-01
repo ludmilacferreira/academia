@@ -78,9 +78,5 @@ public class GerenciamentoDeTreinos {
         ficha2.adicionarExercicio(new GerenciamentoDeTreinos.Exercicio("Glúteo na polia", "Glúteo", 3, 12, 45));
 
         ficha2.listarGerenciamentoDeTreinos();
-
-
-
-    }
-
-}
+         }
+     }
