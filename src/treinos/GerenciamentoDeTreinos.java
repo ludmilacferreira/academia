@@ -1,4 +1,4 @@
-package aulas;
+package treinos;
 
 public class GerenciamentoDeAulas {
 
