@@ -1,12 +1,10 @@
 package estoque;
 
-import java.util.HashMap;
-import java.util.Map;
 public class ControleDeEstoque {
     private String nome;
     private int quantidadeEmEstoque;
 
-    public void Produto(String nome, int quantidadeEmEstoque) {
+    public ControleDeEstoque(String nome, int quantidadeEmEstoque) {
         this.nome = nome;
         this.quantidadeEmEstoque = quantidadeEmEstoque;
     }
@@ -31,7 +29,6 @@ public class ControleDeEstoque {
         }
     }
 }
-
 public class ControleEstoque {
     private Map<String, ControleDeEstoque> estoque;
 
