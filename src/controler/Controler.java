@@ -1,13 +1,17 @@
 package controler;
 
 import acesso.ControleDeAcesso;
-import cadastro.*;
-import comunicacao.ComunicacaoComMembros;
-import instrutores.GerenciamentoDeInstrutores;
-import relatorios.RelatorioEstatisticas;
 import agendamentos.ReservasAgendamentosOnline;
+import cadastro.CadastroDeEquipamentos;
+import cadastro.CadastroDeFuncionarios;
+import cadastro.CadastroDeMembros;
+import cadastro.CadastroDeProdutos;
+import comunicacao.ComunicacaoComMembros;
+import estoque.SistemaAcademia;
+import instrutores.GerenciamentoDeInstrutores;
+import pagamentos.MenuDePagamento;
+import relatorios.RelatorioEstatisticas;
 import treinos.GerenciamentoDeTreinos;
-
 
 import java.util.Scanner;
 
@@ -16,6 +20,7 @@ public class Controler {
     private ControleDeAcesso controleDeAcesso;
     private ComunicacaoComMembros comunicacaoComMembros;
     private CadastroDeFuncionarios cadastroDeFuncionarios;
+    private CadastroDeProdutos CompraDeProdutosComPagamento;
 
     public Controler() {
         this.controleDeAcesso = new ControleDeAcesso();
@@ -175,6 +180,44 @@ public class Controler {
         gerenciamento.listarInstrutores();
     }
 
+    public void mostrarCompraDeProdutosComPagamento() {
+        SistemaAcademia sistema = new SistemaAcademia();
+
+        sistema.adicionarProduto("Whey", 99.99, 100);
+        sistema.adicionarProduto("Creatina", 49.99, 10);
+        sistema.adicionarProduto("Luvas de treino", 15.00, 50);
+        sistema.adicionarProduto("Suplemento polivitamínico", 80.00, 50);
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Bem-vindo ao sistema de compras!");
+        sistema.mostrarEstoque();
+
+        System.out.print("Digite o nome do produto que deseja comprar (ou 'pagar' para ir ao menu de pagamento): ");
+        String input;
+        boolean realizarPagamento = false;
+
+        while (!realizarPagamento) {
+            input = scanner.nextLine();
+
+            if (input.equalsIgnoreCase("pagar")) {
+                realizarPagamento = true;
+                break;
+            }
+
+            System.out.print("Digite a quantidade que deseja comprar: ");
+            int quantidade = Integer.parseInt(scanner.nextLine());
+
+            sistema.venderProduto(input, quantidade);
+            sistema.mostrarEstoque();
+            System.out.print("Digite o nome do produto que deseja comprar (ou 'pagar' para ir ao menu de pagamento): ");
+        }
+
+        System.out.println("Chamando o Menu de Pagamento...");
+        MenuDePagamento.main(null);
+
+        scanner.close();
+    }
 
     public void mostrarControleDePagamento() {
         System.out.println("Implemente a funcionalidade de Controle de Pagamento aqui.");
