@@ -7,12 +7,18 @@ import cadastro.CadastroDeFuncionarios;
 import cadastro.CadastroDeMembros;
 import cadastro.CadastroDeProdutos;
 import comunicacao.ComunicacaoComMembros;
+import estoque.ControleDeEstoque;
+import estoque.ControleEstoque;
 import estoque.SistemaAcademia;
 import instrutores.GerenciamentoDeInstrutores;
+import pagamentos.Academia;
+import pagamentos.ControleDePagamentos;
 import pagamentos.MenuDePagamento;
 import relatorios.RelatorioEstatisticas;
+import seguranca.Seguranca;
 import treinos.GerenciamentoDeTreinos;
 
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class Controler {
@@ -164,7 +170,18 @@ public class Controler {
     }
 
     public void mostrarControleDeEstoque() {
-        System.out.println("Implemente a funcionalidade de Controle de Estoque aqui.");
+        ControleEstoque controleEstoque = new ControleEstoque();
+        ControleDeEstoque produto1 = new ControleDeEstoque("Whey", 100);
+        ControleDeEstoque produto2 = new ControleDeEstoque("Creatina", 10);
+        ControleDeEstoque produto3 = new ControleDeEstoque("Luvas de treino", 50);
+        ControleDeEstoque produto4 = new ControleDeEstoque("Suplemento polivitamínico", 50);
+
+        controleEstoque.adicionarProduto(produto1);
+        controleEstoque.adicionarProduto(produto2);
+        controleEstoque.adicionarProduto(produto3);
+        controleEstoque.adicionarProduto(produto4);
+
+        controleEstoque.listarProdutosEmEstoque();
     }
 
     public void mostrarGerenciamentoDeInstrutores() {
@@ -220,7 +237,24 @@ public class Controler {
     }
 
     public void mostrarControleDePagamento() {
-        System.out.println("Implemente a funcionalidade de Controle de Pagamento aqui.");
+        ControleDePagamentos c1 = new ControleDePagamentos("João", 100.0);
+        ControleDePagamentos c2 = new ControleDePagamentos("Maria", 120.0);
+        ControleDePagamentos c3 = new ControleDePagamentos("Rafaela", 150.0);
+
+        Academia academia = new Academia();
+        academia.adicionarControleDePagamento(c1);
+        academia.adicionarControleDePagamento(c2);
+        academia.adicionarControleDePagamento(c3);
+
+        c1.pagar();
+        c2.pagar();
+        c3.pagar();
+
+        academia.emitirFatura();
+        academia.emitirRecibo(c1);
+        academia.emitirRecibo(c2);
+        academia.emitirRecibo(c3);
+        academia.acompanharPagamentosAtrasados();
     }
 
     public void mostrarRelatoriosEstatisticas() {
@@ -250,7 +284,44 @@ public class Controler {
     }
 
     public void mostrarSeguranca() {
-        System.out.println("Implemente a funcionalidade de Segurança aqui.");
-    }
+        Seguranca securitySystem = new Seguranca();
+        Scanner scanner = new Scanner(System.in);
 
+        Calendar calendar = Calendar.getInstance();
+        int hora = calendar.get(Calendar.HOUR_OF_DAY);
+        String saudacao = "";
+
+        if (hora >= 0 && hora < 12) {
+            saudacao = "Bom dia! ";
+        } else if (hora >= 12 && hora < 18) {
+            saudacao = "Boa tarde! ";
+        } else {
+            saudacao = "Boa noite! ";
+        }
+
+        System.out.println(saudacao + "Vamos treinar?");
+
+        int attempts = 3;
+        while (attempts > 0) {
+            System.out.print("Digite seu nome de usuário: ");
+            String username = scanner.nextLine();
+
+            System.out.print("Digite sua senha: ");
+            String password = scanner.nextLine();
+
+            if (securitySystem.authenticateUser(username, password)) {
+                System.out.println("Autenticação bem-sucedida. Acesso concedido!");
+                break;
+            } else {
+                System.out.println("Autenticação falhou. Tente novamente.");
+                attempts--;
+                System.out.println("Tentativas restantes: " + attempts);
+            }
+        }
+        if (attempts == 0) {
+            System.out.println("Número máximo de tentativas excedido. Conta bloqueada.");
+        }
+
+        scanner.close();
+    }
 }
