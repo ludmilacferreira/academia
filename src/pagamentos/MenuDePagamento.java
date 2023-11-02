@@ -1,43 +1,67 @@
-package pagamento;
+package pagamentos;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuDePagamento {
 
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        boolean continuar = true;
+
+        while (continuar) {
+            exibirOpcoes();
+
+            try {
+                int opcao = scanner.nextInt();
+                scanner.nextLine();
+
+                switch (opcao) {
+                    case 1:
+                        System.out.println("Você escolheu pagar com Dinheiro.");
+                        processarPagamentoDinheiro();
+                        break;
+                    case 2:
+                        System.out.println("Você escolheu pagar com Cartão de Crédito");
+                        processarPagamentoCartaoCredito();
+                        break;
+                    case 3:
+                        System.out.println("Você escolheu pagar com Cartão de Débito");
+                        processarPagamentoCartaoDebito();
+                        break;
+                    case 4:
+                        System.out.println("Você escolheu pagar com PIX");
+                        processarPagamentoPix();
+                        break;
+                    case 5:
+                        System.out.println("Retornando à compra de produtos...");
+                        continuar = false;
+                        break;
+                    case 6:
+                        System.out.println("Saindo do programa...");
+                        continuar = false;
+                        break;
+                    default:
+                        System.out.println("Opção inválida.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Por favor, insira um número válido.");
+                scanner.nextLine();
+            }
+        }
+        scanner.close();
+    }
+
+    private static void exibirOpcoes() {
         System.out.println("Menu de pagamento");
         System.out.println("1. Dinheiro");
         System.out.println("2. Cartão de Crédito");
         System.out.println("3. Cartão de Débito");
         System.out.println("4. PIX");
-        System.out.println("Escolha uma dessas opções:");
-
-        int opcao = scanner.nextInt();
-
-        switch (opcao) {
-            case 1:
-                System.out.println("Você escolheu pagar com Dinheiro.");
-                processarPagamentoDinheiro();
-                break;
-            case 2:
-                System.out.println("Você escolheu pagar com Cartão de Crédito");
-                processarPagamentoCartaoCredito();
-                break;
-            case 3:
-                System.out.println("Você escolheu pagar com Cartão de Débito");
-                processarPagamentoCartaoDebito();
-                break;
-            case 4:
-                System.out.println("Você escolheu pagar com PIX");
-                processarPagamentoPix();
-                break;
-            default:
-                System.out.println("Opção inválida.");
-
-        }
-        scanner.close();
+        System.out.println("5. Retornar à compra de produtos");
+        System.out.println("6. Sair do programa");
+        System.out.println("Escolha uma das opções:");
     }
 
     public static void processarPagamentoDinheiro() {
@@ -47,19 +71,18 @@ public class MenuDePagamento {
         System.out.println("Digite o valor em dinheiro:");
         double valor = scanner.nextDouble();
 
-        if (valor>= valorCompra) {
-            double troco = valor- valorCompra;
+        if (valor >= valorCompra) {
+            double troco = valor - valorCompra;
             System.out.println("Pagamento em dinheiro de R$" + valor + " processado com sucesso.");
             System.out.println("Troco: R$" + troco);
         } else {
             System.out.println("Valor insuficiente. O pagamento não pode ser processado.");
         }
-
-        scanner.close();
     }
+
     public static void processarPagamentoCartaoCredito() {
-        System.out.println("Digite o número do cartão de crédito:");
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite o número do cartão de crédito:");
         String numeroCartao = scanner.next();
         System.out.println("Digite a data de validade (MM/AA):");
         String dataValidade = scanner.next();
@@ -73,9 +96,8 @@ public class MenuDePagamento {
         } else {
             System.out.println("Cartão de crédito inválido. O pagamento não pode ser processado.");
         }
-
-        scanner.close();
     }
+
     public static void processarPagamentoCartaoDebito() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Digite o número do cartão de débito:");
@@ -92,10 +114,9 @@ public class MenuDePagamento {
         } else {
             System.out.println("Cartão de débito inválido. O pagamento não pode ser processado.");
         }
-
-        scanner.close();
     }
-    public static void processarPagamentoPix () {
+
+    public static void processarPagamentoPix() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Digite a chave PIX (CPF, e-mail, telefone, etc.): ");
         String chavePIX = scanner.next();
@@ -103,7 +124,5 @@ public class MenuDePagamento {
         double valorCompra = scanner.nextDouble();
 
         System.out.println("Pagamento com PIX de R$" + valorCompra + " para a chave " + chavePIX + " processado com sucesso.");
-
-        scanner.close();
     }
 }
