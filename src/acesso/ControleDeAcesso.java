@@ -3,7 +3,7 @@ package acesso;
 import java.util.HashMap;
 import java.util.Map;
 
-class ControleDeAcesso {
+public class ControleDeAcesso {
     private Map<String, Boolean> cartoesDeAcesso;
 
     public ControleDeAcesso() {
@@ -36,15 +36,16 @@ class ControleDeAcesso {
 class ControleAcessoAcademia {
     public static void main(String[] args) {
         ControleDeAcesso controleDeAcesso = new ControleDeAcesso();
-        
+
         controleDeAcesso.registrarCartao("123456");
         controleDeAcesso.registrarCartao("987654");
-        
+
         controleDeAcesso.liberarAcesso("123456");
         controleDeAcesso.liberarAcesso("987654");
         controleDeAcesso.liberarAcesso("999999");
-        
+
         controleDeAcesso.bloquearAcesso("123456");
-        controleDeAcesso.liberarAcesso("123456"); 
+        controleDeAcesso.liberarAcesso("123456");
     }
+}
 }
