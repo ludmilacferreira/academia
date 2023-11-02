@@ -5,8 +5,8 @@ import java.util.List;
 
 public class CadastroDeProdutos {
     static class Produto {
-        private final String nome;
-        private final double preco;
+        private String nome;
+        private double preco;
 
         public Produto(String nome, double preco) {
             this.nome = nome;
@@ -22,7 +22,7 @@ public class CadastroDeProdutos {
         }
     }
 
-    static class Academia {
+    public static class Academia {
         private final List<Produto> produtos;
 
         public Academia() {
@@ -40,6 +40,10 @@ public class CadastroDeProdutos {
                 System.out.println("Nome: " + produto.getNome() + ", Preço: R$" + produto.getPreco());
             }
         }
+
+        public void excluirProduto(String nome) {
+            produtos.removeIf(produto -> produto.getNome().equalsIgnoreCase(nome));
+        }
     }
 
     public static void main(String[] args) {
@@ -50,7 +54,5 @@ public class CadastroDeProdutos {
         academia.adicionarProduto("Shaker", 9.99);
 
         academia.listarProdutos();
-
     }
 }
-
