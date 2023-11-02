@@ -74,7 +74,7 @@ public class GerenciamentoDeInstrutores {
         GerenciamentoDeInstrutores gerenciamento = new GerenciamentoDeInstrutores();
 
         Instrutor instrutor1 = gerenciamento.new Instrutor("André", "Musculação (estagiário)");
-        Instrutor instrutor2 = gerenciamento.new Instrutor("Carlos", "Musculação (professor)");
+        Instrutor instrutor2 = gerenciamento.new Instrutor("Pedro", "Musculação (professor)");
         Instrutor instrutor3 = gerenciamento.new Instrutor("Mariana", "Pilates (professora)");
 
         gerenciamento.adicionarInstrutor(instrutor1);
