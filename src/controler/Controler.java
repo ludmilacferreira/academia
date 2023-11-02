@@ -3,6 +3,10 @@ package controler;
 import acesso.ControleDeAcesso;
 import cadastro.*;
 import comunicacao.ComunicacaoComMembros;
+import instrutores.GerenciamentoDeInstrutores;
+import relatorios.RelatorioEstatisticas;
+import agendamentos.ReservasAgendamentosOnline;
+import treinos.GerenciamentoDeTreinos;
 
 
 import java.util.Scanner;
@@ -32,11 +36,29 @@ public class Controler {
     }
 
     public void mostrarReservaAgendamentoOnline() {
-        System.out.println("Implemente a funcionalidade de Reserva e Agendamento Online aqui.");
+        ReservasAgendamentosOnline agendamentos = new ReservasAgendamentosOnline();
+        agendamentos.fazerReserva("14:00");
+        agendamentos.fazerReserva("15:00");
+
+        agendamentos.cancelarReserva("14:00");
+
+        agendamentos.cancelarReserva("16:00");
     }
 
-    public void mostrarGerenciamentoDeAulas() {
-        System.out.println("Implemente a funcionalidade de Gerenciamento de Aulas aqui.");
+    public void mostrarGerenciamentoDeTreinos() {
+        GerenciamentoDeTreinos ficha = new GerenciamentoDeTreinos("Treino de Peito e Tríceps");
+
+        ficha.adicionarExercicio(new GerenciamentoDeTreinos.Exercicio("Supino", "Peito", 4, 10, 60));
+        ficha.adicionarExercicio(new GerenciamentoDeTreinos.Exercicio("Crucifixo", "Peito", 3, 12, 45));
+
+        ficha.listarGerenciamentoDeTreinos();
+
+        GerenciamentoDeTreinos ficha2 = new GerenciamentoDeTreinos("Treino de Glúteo");
+
+        ficha2.adicionarExercicio(new GerenciamentoDeTreinos.Exercicio("Elevação Pélvica", "Glúteo", 4, 10, 60));
+        ficha2.adicionarExercicio(new GerenciamentoDeTreinos.Exercicio("Glúteo na polia", "Glúteo", 3, 12, 45));
+
+        ficha2.listarGerenciamentoDeTreinos();
     }
 
     public void mostrarTelaDeCadastro() {
@@ -115,21 +137,15 @@ public class Controler {
     }
 
     private void realizarCadastroDeProdutos() {
-   
-    CadastroDeProdutos cadastroDeProdutos = new CadastroDeProdutos();
-    
-    Produto produto1 = new Produto("Whey Protein", 49.99);
-    Produto produto2 = new Produto("Barra de Proteína", 2.99);
-    Produto produto3 = new Produto("Shaker", 9.99);
+        CadastroDeProdutos.Academia academia = new CadastroDeProdutos.Academia();
+        academia.adicionarProduto("Whey Protein", 49.99);
+        academia.adicionarProduto("Barra de Proteína", 2.99);
+        academia.adicionarProduto("Shaker", 9.99);
 
-    cadastroDeProdutos.adicionarProduto(produto1);
-    cadastroDeProdutos.adicionarProduto(produto2);
-    cadastroDeProdutos.adicionarProduto(produto3);
+        academia.listarProdutos();
+    }
 
-    cadastroDeProdutos.mostrarProdutos();
- }
-
-        public void mostrarComunicacaoComMembros() {
+    public void mostrarComunicacaoComMembros() {
         ComunicacaoComMembros.ComunicacaoMembros comunicacaoMembros = new ComunicacaoComMembros.ComunicacaoMembros();
         ComunicacaoComMembros.ComunicacaoEmail comunicacaoPorEmail = new ComunicacaoComMembros.ComunicacaoEmail("exemplo@email.com");
         comunicacaoMembros.setMetodoComunicacao(comunicacaoPorEmail);
@@ -147,15 +163,47 @@ public class Controler {
     }
 
     public void mostrarGerenciamentoDeInstrutores() {
-        System.out.println("Implemente a funcionalidade de Gerenciamento de Instrutores aqui.");
+        GerenciamentoDeInstrutores gerenciamento = new GerenciamentoDeInstrutores();
+        GerenciamentoDeInstrutores.Instrutor instrutor1 = gerenciamento.new Instrutor("Carlos", "Musculação (estagiário)");
+        GerenciamentoDeInstrutores.Instrutor instrutor2 = gerenciamento.new Instrutor("Pedro", "Musculação (professor)");
+        GerenciamentoDeInstrutores.Instrutor instrutor3 = gerenciamento.new Instrutor("Mariana", "Pilates (professora)");
+
+        gerenciamento.adicionarInstrutor(instrutor1);
+        gerenciamento.adicionarInstrutor(instrutor2);
+        gerenciamento.adicionarInstrutor(instrutor3);
+
+        gerenciamento.listarInstrutores();
     }
+
 
     public void mostrarControleDePagamento() {
         System.out.println("Implemente a funcionalidade de Controle de Pagamento aqui.");
     }
 
     public void mostrarRelatoriosEstatisticas() {
-        System.out.println("Implemente a funcionalidade de Relatórios e Estatísticas aqui.");
+        RelatorioEstatisticas.Membro membro1 = new RelatorioEstatisticas.Membro("Rafaela", 26, 80.0);
+        RelatorioEstatisticas.Membro membro2 = new RelatorioEstatisticas.Membro("Larissa", 20, 80.0);
+        RelatorioEstatisticas.Membro membro3 = new RelatorioEstatisticas.Membro("Pedro", 22, 80.0);
+        RelatorioEstatisticas.Membro membro4 = new RelatorioEstatisticas.Membro("Clara", 20, 80.0);
+        RelatorioEstatisticas.Membro membro5 = new RelatorioEstatisticas.Membro("Ludmila", 20, 80.0);
+
+        RelatorioEstatisticas.Academia academia = new RelatorioEstatisticas.Academia();
+        academia.adicionarMembro(membro1);
+        academia.adicionarMembro(membro2);
+        academia.adicionarMembro(membro3);
+        academia.adicionarMembro(membro4);
+        academia.adicionarMembro(membro5);
+
+        academia.adicionarDespesasMensais(2000.0);
+
+        double receitasMensais = academia.calcularReceitasMensais();
+        int frequenciaMensal = academia.calcularFrequenciaMensal();
+        double lucroMensal = academia.calcularLucroMensal();
+
+        System.out.println("Relatório Mensal:");
+        System.out.println("Receitas Mensais: R$" + receitasMensais);
+        System.out.println("Frequência Mensal Total: " + frequenciaMensal + " horas");
+        System.out.println("Lucro Mensal: R$" + lucroMensal);
     }
 
     public void mostrarSeguranca() {

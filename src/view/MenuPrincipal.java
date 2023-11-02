@@ -6,7 +6,7 @@ public class MenuPrincipal {
         System.out.println("Escolha uma opção:");
         System.out.println("1. Mostrar Controle de Acesso");
         System.out.println("2. Mostrar Reserva e Agendamento Online");
-        System.out.println("3. Mostrar Gerenciamento de Aulas");
+        System.out.println("3. Mostrar Gerenciamento de Treinos");
         System.out.println("4. Mostrar Tela de Cadastro");
         System.out.println("5. Mostrar Comunicação com Membros");
         System.out.println("6. Mostrar Controle de Estoque");
