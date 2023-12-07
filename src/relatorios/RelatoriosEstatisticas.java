@@ -62,32 +62,5 @@ public class RelatorioEstatisticas {
             return receitas - despesas;
         }
     }
-
-    public static void main(String[] args) {
-        Academia academia = new Academia();
-
-        Membro membro1 = new Membro("Rafaela", 26, 80.0);
-        Membro membro2 = new Membro("Larissa", 20, 80.0);
-        Membro membro3 = new Membro("Pedro", 22, 80.0);
-        Membro membro4 = new Membro("Clara", 20, 80.0);
-        Membro membro5 = new Membro("Ludmila", 20, 80.0);
-
-        academia.adicionarMembro(membro1);
-        academia.adicionarMembro(membro2);
-        academia.adicionarMembro(membro3);
-        academia.adicionarMembro(membro4);
-        academia.adicionarMembro(membro5);
-
-        academia.adicionarDespesasMensais(2000.0);
-
-        double receitasMensais = academia.calcularReceitasMensais();
-        int frequenciaMensal = academia.calcularFrequenciaMensal();
-        double lucroMensal = academia.calcularLucroMensal();
-
-        System.out.println("Relatório Mensal:");
-        System.out.println("Receitas Mensais: R$" + receitasMensais);
-        System.out.println("Frequência Mensal Total: " + frequenciaMensal + " horas");
-        System.out.println("Lucro Mensal: R$" + lucroMensal);
-    }
 }
 
