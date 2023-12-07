@@ -40,18 +40,4 @@ public class CadastroDeEquipamentos {
             }
         }
     }
-
-    public static void main(String[] args) {
-        CadastroEquipamentos cadastroDeEquipamentos = new CadastroEquipamentos();
-
-        Equipamento equipamento1 = new Equipamento("Esteira", "Cardio");
-        Equipamento equipamento2 = new Equipamento("Bicicleta Ergométrica", "Cardio");
-        Equipamento equipamento3 = new Equipamento("Haltere", "Musculação");
-
-        cadastroDeEquipamentos.adicionarEquipamento(equipamento1);
-        cadastroDeEquipamentos.adicionarEquipamento(equipamento2);
-        cadastroDeEquipamentos.adicionarEquipamento(equipamento3);
-
-        cadastroDeEquipamentos.mostrarEquipamentos();
-    }
 }
