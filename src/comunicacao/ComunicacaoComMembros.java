@@ -5,7 +5,7 @@ public class ComunicacaoComMembros {
         void enviarNotificacao(String mensagem);
     }
 
-    static class ComunicacaoEmail implements MetodoComunicacao {
+    public static class ComunicacaoEmail implements MetodoComunicacao {
         private String enderecoEmail;
 
         public ComunicacaoEmail(String enderecoEmail) {
@@ -19,7 +19,7 @@ public class ComunicacaoComMembros {
         }
     }
 
-    static class ComunicacaoSMS implements MetodoComunicacao {
+    public static class ComunicacaoSMS implements MetodoComunicacao {
         private String numeroTelefone;
 
         public ComunicacaoSMS(String numeroTelefone) {
@@ -33,7 +33,7 @@ public class ComunicacaoComMembros {
         }
     }
 
-    static class ComunicacaoMembros {
+    public static class ComunicacaoMembros {
         private MetodoComunicacao metodoComunicacao;
 
         public void setMetodoComunicacao(MetodoComunicacao metodoComunicacao) {
@@ -47,19 +47,5 @@ public class ComunicacaoComMembros {
                 System.out.println("Método de comunicação não configurado.");
             }
         }
-    }
-
-    public static void main(String[] args) {
-        ComunicacaoMembros comunicacaoMembros = new ComunicacaoMembros();
-
-        MetodoComunicacao comunicacaoPorEmail = new ComunicacaoEmail("exemplo@email.com");
-        comunicacaoMembros.setMetodoComunicacao(comunicacaoPorEmail);
-        comunicacaoMembros.enviarNotificacaoParaMembro("Aula de Zumba amanhã às 10h. Não se atrase!");
-
-        MetodoComunicacao comunicacaoPorSMS = new ComunicacaoSMS("123456789");
-        comunicacaoMembros.setMetodoComunicacao(comunicacaoPorSMS);
-        comunicacaoMembros.enviarNotificacaoParaMembro("Seu pagamento está em atraso. Por favor, regularize.");
-
-        comunicacaoMembros.enviarNotificacaoParaMembro("Teste de notificação sem método de comunicação configurado.");
     }
 }
