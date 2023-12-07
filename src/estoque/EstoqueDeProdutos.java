@@ -1,53 +1,40 @@
 package estoque;
 
-public class EstoqueDeProdutos {
-    private String nome;
-    private double preco;
-    private int quantidade;
+import java.util.HashMap;
+import java.util.Map;
 
-    public EstoqueDeProdutos(String nome, double preco, int quantidade) {
-        this.nome = nome;
-        this.preco = preco;
-        this.quantidade = quantidade;
+public class ControleEstoque {
+    private Map<String, ControleDeEstoque> estoque;
+
+    public ControleEstoque() {
+        estoque = new HashMap<>();
     }
 
-    public String getNome() {
-        return nome;
+    public void adicionarProduto(ControleDeEstoque produto) {
+        estoque.put(produto.getNome(), produto);
     }
 
-    public double getPreco() {
-        return preco;
+    public ControleDeEstoque buscarProduto(String nome) {
+        return estoque.get(nome);
     }
 
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void adicionarQuantidade(int quantidade) {
-        this.quantidade += quantidade;
-    }
-
-    public void removerQuantidade(int quantidade) {
-        if (this.quantidade >= quantidade) {
-            this.quantidade -= quantidade;
+    public void atualizarEstoque(String nome, int quantidade) {
+        ControleDeEstoque produto = buscarProduto(nome);
+        if (produto != null) {
+            produto.adicionarQuantidade(quantidade);
         } else {
-            System.out.println("Infelizmente acabou o estoque.");
+            System.out.println("Produto não encontrado no estoque.");
         }
     }
 
-    public static void main(String[] args) {
-        SistemaAcademia sistema = new SistemaAcademia();
+    public void removerProduto(String nome) {
+        estoque.remove(nome);
+    }
 
-        sistema.adicionarProduto("Whey", 99.99, 100);
-        sistema.adicionarProduto("Creatina", 49.99, 10);
-        sistema.adicionarProduto("Luvas de treino", 15.00, 50);
-        sistema.adicionarProduto("Suplemento polivitamínico", 80.00, 50);
-
-        sistema.mostrarEstoque();
-
-        sistema.venderProduto("Whey", 5);
-        sistema.venderProduto("Creatina", 2);
-
-        sistema.mostrarEstoque();
+    public void listarProdutosEmEstoque() {
+        System.out.println("Produtos em estoque:");
+        for (ControleDeEstoque produto : estoque.values()) {
+            System.out.println(produto.getNome() + ": " + produto.getQuantidadeEmEstoque() + " unidades");
+        }
     }
 }
