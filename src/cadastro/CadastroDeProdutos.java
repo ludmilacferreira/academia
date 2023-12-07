@@ -45,14 +45,4 @@ public class CadastroDeProdutos {
             produtos.removeIf(produto -> produto.getNome().equalsIgnoreCase(nome));
         }
     }
-
-    public static void main(String[] args) {
-        Academia academia = new Academia();
-
-        academia.adicionarProduto("Whey Protein", 49.99);
-        academia.adicionarProduto("Barra de Proteína", 2.99);
-        academia.adicionarProduto("Shaker", 9.99);
-
-        academia.listarProdutos();
-    }
 }
