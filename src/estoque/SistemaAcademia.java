@@ -32,4 +32,8 @@ public class SistemaAcademia {
             System.out.println(produto.getNome() + " - R$" + produto.getPreco() + " - Quantidade: " + produto.getQuantidade());
         }
     }
+
+    public boolean produtoDisponivel(String input) {
+        return false;
+    }
 }
