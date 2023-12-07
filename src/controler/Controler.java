@@ -197,7 +197,7 @@ public class Controler {
         gerenciamento.listarInstrutores();
     }
 
-    public void mostrarCompraDeProdutosComPagamento() {
+   public void mostrarCompraDeProdutosComPagamento() {
         SistemaAcademia sistema = new SistemaAcademia();
 
         sistema.adicionarProduto("Whey", 99.99, 100);
@@ -231,7 +231,8 @@ public class Controler {
         }
 
         System.out.println("Chamando o Menu de Pagamento...");
-        MenuDePagamento.main(null);
+        MenuDePagamento menuDePagamento = new MenuDePagamento();
+        menuDePagamento.realizarPagamento();
 
         scanner.close();
     }
