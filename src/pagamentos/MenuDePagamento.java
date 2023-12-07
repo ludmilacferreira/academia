@@ -7,7 +7,7 @@ public class MenuDePagamento {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public void realizarPagamento() {
         boolean continuar = true;
 
         while (continuar) {
@@ -53,7 +53,7 @@ public class MenuDePagamento {
         scanner.close();
     }
 
-    private static void exibirOpcoes() {
+    private void exibirOpcoes() {
         System.out.println("Menu de pagamento");
         System.out.println("1. Dinheiro");
         System.out.println("2. Cartão de Crédito");
@@ -64,8 +64,7 @@ public class MenuDePagamento {
         System.out.println("Escolha uma das opções:");
     }
 
-    public static void processarPagamentoDinheiro() {
-        Scanner scanner = new Scanner(System.in);
+    private void processarPagamentoDinheiro() {
         System.out.println("Digite o valor da compra:");
         double valorCompra = scanner.nextDouble();
         System.out.println("Digite o valor em dinheiro:");
@@ -80,8 +79,7 @@ public class MenuDePagamento {
         }
     }
 
-    public static void processarPagamentoCartaoCredito() {
-        Scanner scanner = new Scanner(System.in);
+    private void processarPagamentoCartaoCredito() {
         System.out.println("Digite o número do cartão de crédito:");
         String numeroCartao = scanner.next();
         System.out.println("Digite a data de validade (MM/AA):");
@@ -98,8 +96,7 @@ public class MenuDePagamento {
         }
     }
 
-    public static void processarPagamentoCartaoDebito() {
-        Scanner scanner = new Scanner(System.in);
+    private void processarPagamentoCartaoDebito() {
         System.out.println("Digite o número do cartão de débito:");
         String numeroCartao = scanner.next();
         System.out.println("Digite o código de segurança:");
@@ -116,8 +113,7 @@ public class MenuDePagamento {
         }
     }
 
-    public static void processarPagamentoPix() {
-        Scanner scanner = new Scanner(System.in);
+    private void processarPagamentoPix() {
         System.out.println("Digite a chave PIX (CPF, e-mail, telefone, etc.): ");
         String chavePIX = scanner.next();
         System.out.println("Digite o valor da compra:");
