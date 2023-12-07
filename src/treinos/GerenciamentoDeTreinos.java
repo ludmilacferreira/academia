@@ -63,20 +63,4 @@ public class GerenciamentoDeTreinos {
             return descanso;
         }
     }
-
-    public static void main(String[] args) {
-        GerenciamentoDeTreinos ficha = new GerenciamentoDeTreinos("Treino de Peito e Tríceps");
-
-        ficha.adicionarExercicio(new GerenciamentoDeTreinos.Exercicio("Supino", "Peito", 4, 10, 60));
-        ficha.adicionarExercicio(new GerenciamentoDeTreinos.Exercicio("Crucifixo", "Peito", 3, 12, 45));
-
-        ficha.listarGerenciamentoDeTreinos();
-
-        GerenciamentoDeTreinos ficha2 = new GerenciamentoDeTreinos("Treino de Glúteo");
-
-        ficha2.adicionarExercicio(new GerenciamentoDeTreinos.Exercicio("Elevação Pélvica", "Glúteo", 4, 10, 60));
-        ficha2.adicionarExercicio(new GerenciamentoDeTreinos.Exercicio("Glúteo na polia", "Glúteo", 3, 12, 45));
-
-        ficha2.listarGerenciamentoDeTreinos();
-    }
 }
