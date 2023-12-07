@@ -1,8 +1,8 @@
 package cadastro;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CadastroDeMembros {
@@ -75,32 +75,7 @@ public class CadastroDeMembros {
         }
     }
 
-    public static void main(String[] args) {
-        CadastroMembros cadastroDeMembros = new CadastroMembros();
-
-        Membro membro1 = new Membro("Ludmilla", "Premium");
-        Membro membro2 = new Membro("Caio", "Regular");
-        Membro membro3 = new Membro("Clara", "Premium");
-
-        cadastroDeMembros.adicionarMembro(membro1);
-        cadastroDeMembros.adicionarMembro(membro2);
-        cadastroDeMembros.adicionarMembro(membro3);
-
-        cadastroDeMembros.mostrarMembros();
-
-        CadastroDeMembros cadastro = new CadastroDeMembros();
-
-        cadastro.cadastrarMembro(1, "Ludmilla", PlanoPagamento.ANUAL);
-        cadastro.cadastrarMembro(2, "Caio", PlanoPagamento.MENSAL);
-        cadastro.cadastrarMembro(3, "Clara", PlanoPagamento.SEMESTRAL);
-
-        cadastro.mostrarDetalhesMembro(1);
-        cadastro.mostrarDetalhesMembro(2);
-        cadastro.mostrarDetalhesMembro(3);
-    }
-
     public enum PlanoPagamento {
         MENSAL, TRIMESTRAL, SEMESTRAL, ANUAL
     }
 }
-
