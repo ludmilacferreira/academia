@@ -32,20 +32,3 @@ public class ControleDeAcesso {
         }
     }
 }
-
-class ControleAcessoAcademia {
-    public static void main(String[] args) {
-        ControleDeAcesso controleDeAcesso = new ControleDeAcesso();
-
-        controleDeAcesso.registrarCartao("123456");
-        controleDeAcesso.registrarCartao("987654");
-
-        controleDeAcesso.liberarAcesso("123456");
-        controleDeAcesso.liberarAcesso("987654");
-        controleDeAcesso.liberarAcesso("999999");
-
-        controleDeAcesso.bloquearAcesso("123456");
-        controleDeAcesso.liberarAcesso("123456");
-    }
-}
-}
