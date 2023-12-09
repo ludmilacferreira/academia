@@ -215,19 +215,25 @@ public class Controler {
         boolean realizarPagamento = false;
 
         while (!realizarPagamento) {
-            input = scanner.nextLine();
+            try {
+                input = scanner.nextLine();
 
-            if (input.equalsIgnoreCase("pagar")) {
-                realizarPagamento = true;
-                break;
+                if (input.equalsIgnoreCase("pagar")) {
+                    realizarPagamento = true;
+                    break;
+                }
+
+                System.out.print("Digite a quantidade que deseja comprar: ");
+                int quantidade = Integer.parseInt(scanner.nextLine());
+
+                sistema.venderProduto(input, quantidade);
+                sistema.mostrarEstoque();
+                System.out.print("Digite o nome do produto que deseja comprar (ou 'pagar' para ir ao menu de pagamento): ");
+            } catch (NumberFormatException e) {
+                System.out.println("Erro: Quantidade inválida. Certifique-se de digitar um número inteiro.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Erro: " + e.getMessage());
             }
-
-            System.out.print("Digite a quantidade que deseja comprar: ");
-            int quantidade = Integer.parseInt(scanner.nextLine());
-
-            sistema.venderProduto(input, quantidade);
-            sistema.mostrarEstoque();
-            System.out.print("Digite o nome do produto que deseja comprar (ou 'pagar' para ir ao menu de pagamento): ");
         }
 
         System.out.println("Chamando o Menu de Pagamento...");
@@ -235,27 +241,6 @@ public class Controler {
         menuDePagamento.realizarPagamento();
 
         scanner.close();
-    }
-
-    public void mostrarControleDePagamento() {
-        ControleDePagamentos c1 = new ControleDePagamentos("João", 100.0);
-        ControleDePagamentos c2 = new ControleDePagamentos("Maria", 120.0);
-        ControleDePagamentos c3 = new ControleDePagamentos("Rafaela", 150.0);
-
-        Academia academia = new Academia();
-        academia.adicionarControleDePagamento(c1);
-        academia.adicionarControleDePagamento(c2);
-        academia.adicionarControleDePagamento(c3);
-
-        c1.pagar();
-        c2.pagar();
-        c3.pagar();
-
-        academia.emitirFatura();
-        academia.emitirRecibo(c1);
-        academia.emitirRecibo(c2);
-        academia.emitirRecibo(c3);
-        academia.acompanharPagamentosAtrasados();
     }
 
     public void mostrarRelatoriosEstatisticas() {
