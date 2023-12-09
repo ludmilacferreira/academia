@@ -69,18 +69,4 @@ public class GerenciamentoDeInstrutores {
             return especialidade;
         }
     }
-
-    public static void main(String[] args) {
-        GerenciamentoDeInstrutores gerenciamento = new GerenciamentoDeInstrutores();
-
-        Instrutor instrutor1 = gerenciamento.new Instrutor("André", "Musculação (estagiário)");
-        Instrutor instrutor2 = gerenciamento.new Instrutor("Carlos", "Musculação (professor)");
-        Instrutor instrutor3 = gerenciamento.new Instrutor("Mariana", "Pilates (professora)");
-
-        gerenciamento.adicionarInstrutor(instrutor1);
-        gerenciamento.adicionarInstrutor(instrutor2);
-        gerenciamento.adicionarInstrutor(instrutor3);
-
-        gerenciamento.listarInstrutores();
-    }
 }

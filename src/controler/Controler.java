@@ -1,14 +1,24 @@
 package controler;
 
 import acesso.ControleDeAcesso;
-import cadastro.*;
-import comunicacao.ComunicacaoComMembros;
-import instrutores.GerenciamentoDeInstrutores;
-import relatorios.RelatorioEstatisticas;
 import agendamentos.ReservasAgendamentosOnline;
+import cadastro.CadastroDeEquipamentos;
+import cadastro.CadastroDeFuncionarios;
+import cadastro.CadastroDeMembros;
+import cadastro.CadastroDeProdutos;
+import comunicacao.ComunicacaoComMembros;
+import estoque.ControleDeEstoque;
+import estoque.ControleEstoque;
+import estoque.SistemaAcademia;
+import instrutores.GerenciamentoDeInstrutores;
+import pagamentos.Academia;
+import pagamentos.ControleDePagamentos;
+import pagamentos.MenuDePagamento;
+import relatorios.RelatorioEstatisticas;
+import seguranca.Seguranca;
 import treinos.GerenciamentoDeTreinos;
 
-
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class Controler {
@@ -16,6 +26,7 @@ public class Controler {
     private ControleDeAcesso controleDeAcesso;
     private ComunicacaoComMembros comunicacaoComMembros;
     private CadastroDeFuncionarios cadastroDeFuncionarios;
+    private CadastroDeProdutos CompraDeProdutosComPagamento;
 
     public Controler() {
         this.controleDeAcesso = new ControleDeAcesso();
@@ -159,7 +170,18 @@ public class Controler {
     }
 
     public void mostrarControleDeEstoque() {
-        System.out.println("Implemente a funcionalidade de Controle de Estoque aqui.");
+        ControleEstoque controleEstoque = new ControleEstoque();
+        ControleDeEstoque produto1 = new ControleDeEstoque("Whey", 100);
+        ControleDeEstoque produto2 = new ControleDeEstoque("Creatina", 10);
+        ControleDeEstoque produto3 = new ControleDeEstoque("Luvas de treino", 50);
+        ControleDeEstoque produto4 = new ControleDeEstoque("Suplemento polivitamínico", 50);
+
+        controleEstoque.adicionarProduto(produto1);
+        controleEstoque.adicionarProduto(produto2);
+        controleEstoque.adicionarProduto(produto3);
+        controleEstoque.adicionarProduto(produto4);
+
+        controleEstoque.listarProdutosEmEstoque();
     }
 
     public void mostrarGerenciamentoDeInstrutores() {
@@ -175,9 +197,50 @@ public class Controler {
         gerenciamento.listarInstrutores();
     }
 
+   public void mostrarCompraDeProdutosComPagamento() {
+        SistemaAcademia sistema = new SistemaAcademia();
 
-    public void mostrarControleDePagamento() {
-        System.out.println("Implemente a funcionalidade de Controle de Pagamento aqui.");
+        sistema.adicionarProduto("Whey", 99.99, 100);
+        sistema.adicionarProduto("Creatina", 49.99, 10);
+        sistema.adicionarProduto("Luvas de treino", 15.00, 50);
+        sistema.adicionarProduto("Suplemento polivitamínico", 80.00, 50);
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Bem-vindo ao sistema de compras!");
+        sistema.mostrarEstoque();
+
+        System.out.print("Digite o nome do produto que deseja comprar (ou 'pagar' para ir ao menu de pagamento): ");
+        String input;
+        boolean realizarPagamento = false;
+
+        while (!realizarPagamento) {
+            try {
+                input = scanner.nextLine();
+
+                if (input.equalsIgnoreCase("pagar")) {
+                    realizarPagamento = true;
+                    break;
+                }
+
+                System.out.print("Digite a quantidade que deseja comprar: ");
+                int quantidade = Integer.parseInt(scanner.nextLine());
+
+                sistema.venderProduto(input, quantidade);
+                sistema.mostrarEstoque();
+                System.out.print("Digite o nome do produto que deseja comprar (ou 'pagar' para ir ao menu de pagamento): ");
+            } catch (NumberFormatException e) {
+                System.out.println("Erro: Quantidade inválida. Certifique-se de digitar um número inteiro.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+        }
+
+        System.out.println("Chamando o Menu de Pagamento...");
+        MenuDePagamento menuDePagamento = new MenuDePagamento();
+        menuDePagamento.realizarPagamento();
+
+        scanner.close();
     }
 
     public void mostrarRelatoriosEstatisticas() {
@@ -207,7 +270,44 @@ public class Controler {
     }
 
     public void mostrarSeguranca() {
-        System.out.println("Implemente a funcionalidade de Segurança aqui.");
-    }
+        Seguranca securitySystem = new Seguranca();
+        Scanner scanner = new Scanner(System.in);
 
+        Calendar calendar = Calendar.getInstance();
+        int hora = calendar.get(Calendar.HOUR_OF_DAY);
+        String saudacao = "";
+
+        if (hora >= 0 && hora < 12) {
+            saudacao = "Bom dia! ";
+        } else if (hora >= 12 && hora < 18) {
+            saudacao = "Boa tarde! ";
+        } else {
+            saudacao = "Boa noite! ";
+        }
+
+        System.out.println(saudacao + "Vamos treinar?");
+
+        int attempts = 3;
+        while (attempts > 0) {
+            System.out.print("Digite seu nome de usuário: ");
+            String username = scanner.nextLine();
+
+            System.out.print("Digite sua senha: ");
+            String password = scanner.nextLine();
+
+            if (securitySystem.authenticateUser(username, password)) {
+                System.out.println("Autenticação bem-sucedida. Acesso concedido!");
+                break;
+            } else {
+                System.out.println("Autenticação falhou. Tente novamente.");
+                attempts--;
+                System.out.println("Tentativas restantes: " + attempts);
+            }
+        }
+        if (attempts == 0) {
+            System.out.println("Número máximo de tentativas excedido. Conta bloqueada.");
+        }
+
+        scanner.close();
+    }
 }

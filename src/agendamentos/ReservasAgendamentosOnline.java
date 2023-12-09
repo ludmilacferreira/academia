@@ -23,15 +23,4 @@ public class ReservasAgendamentosOnline {
             System.out.println("Nenhuma reserva encontrada para o horário especificado.");
         }
     }
-
-    public static void main(String[] args) {
-        ReservasAgendamentosOnline agendamentos = new ReservasAgendamentosOnline();
-
-        agendamentos.fazerReserva("14:00");
-        agendamentos.fazerReserva("15:00");
-
-        agendamentos.cancelarReserva("14:00");
-
-        agendamentos.cancelarReserva("16:00");
-    }
 }

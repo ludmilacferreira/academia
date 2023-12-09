@@ -13,7 +13,7 @@ public class Principal {
         String resposta;
         int op;
         do {
-            Menu.mostrarMenuPrincipal();
+            MenuPrincipal.mostrarMenuPrincipal();
             op = scanner.nextInt();
             switch (op) {
                 case 1:
@@ -38,22 +38,32 @@ public class Principal {
                     controler.mostrarGerenciamentoDeInstrutores();
                     break;
                 case 8:
-                    controler.mostrarControleDePagamento();
+                    controler.mostrarCompraDeProdutosComPagamento();
                     break;
                 case 9:
-                    controler.mostrarRelatoriosEstatisticas();
+                    controler.mostrarControleDePagamento();
                     break;
                 case 10:
-                    controler.mostrarSeguranca();
+                    controler.mostrarRelatoriosEstatisticas();
                     break;
                 case 11:
+                    controler.mostrarSeguranca();
+                    break;
+                case 12:
                     System.exit(0);
                 default:
                     System.out.println("Opção inválida!");
             }
 
             System.out.println("Deseja continuar? (Sim/Não):");
-            resposta = scanner.next();
-        } while (resposta.equalsIgnoreCase("Sim"));
+            if (scanner.hasNext()) {
+                resposta = scanner.next();
+                if (resposta.equalsIgnoreCase("Não")) {
+                    break;
+                }
+            } else {
+                break;
+            }
+        } while (true);
     }
 }
